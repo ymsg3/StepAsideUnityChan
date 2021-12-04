@@ -112,9 +112,8 @@ public class UnityChanController : MonoBehaviour
         // Unityちゃんに速度を与える（追加１→変更２→変更３）
         this.myRigidbody.velocity = new Vector3 (inputVelocityX, inputVelocityY, velocityZ);
 
-        Debug.Log ("z " + this.transform.position.z);
         // 課題用：描画範囲判定用のオブジェクトをユニティちゃんに追従させる
-        this.drowRange.transform.position = new Vector3 (0, this.drowRange.transform.position.y, this.transform.position.z - 6);
+        this.drowRange.transform.position = new Vector3 (0, 0, this.transform.position.z - 7);
     }
 
     // トリガーモードで他のオブジェクトと接触した場合の処理
