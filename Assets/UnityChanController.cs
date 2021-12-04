@@ -35,6 +35,9 @@ public class UnityChanController : MonoBehaviour
     // ジャンプボタン押下の判定（追加９）
     private bool isJButtonDown = false;
 
+    // 課題用；描画範囲
+    private GameObject drowRange;
+
     // Use this for initialization
     void Start ()
     {
@@ -52,6 +55,10 @@ public class UnityChanController : MonoBehaviour
 
         // シーン中のscoreTextオブジェクトを取得（追加８）
         this.scoreText = GameObject.Find ("ScoreText");
+
+        // 課題用：アイテムの描画範囲を取得
+        this.drowRange = transform.Find ("DrowRange").gameObject;
+
     }
 
     // Update is called once per frame
@@ -102,15 +109,18 @@ public class UnityChanController : MonoBehaviour
             this.myAnimator.SetBool ("Jump", false);
         }
 
-
         // Unityちゃんに速度を与える（追加１→変更２→変更３）
         this.myRigidbody.velocity = new Vector3 (inputVelocityX, inputVelocityY, velocityZ);
 
+        Debug.Log ("z " + this.transform.position.z);
+        // 課題用：描画範囲判定用のオブジェクトをユニティちゃんに追従させる
+        this.drowRange.transform.position = new Vector3 (0, this.drowRange.transform.position.y, this.transform.position.z - 6);
     }
 
     // トリガーモードで他のオブジェクトと接触した場合の処理
     private void OnTriggerEnter (Collider other)
     {
+
         // 障害物に衝突した場合（追加４）
         if (other.gameObject.tag == "CarTag" || other.gameObject.tag == "TrafficConeTag")
         {

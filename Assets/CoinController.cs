@@ -17,4 +17,5 @@ public class CoinController : MonoBehaviour
     {
         this.transform.Rotate (0, 3, 0);
     }
+
 }
